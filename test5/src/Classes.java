@@ -19,13 +19,34 @@ Example 2
         String result = "";
         int i;
         do {
-            System.out.println(org);
-            i = org.indexOf(search);
+            System.out.println(org); // This is a test.
+            i = org.indexOf(search); // 10
             if (i != -1) {
-                result = org.substring(0, i);
-                result += sub;
-                result = result + org.substring(i + search.length());
+                result = org.substring(0, i); // This is a |
+                result += sub; // This is a b
+                result = result + org.substring(i + search.length()); // This is a best.
                 org = result;
+            }
+        } while (i != -1);
+
+Example 3
+        String org = "This is a test. This is, too.";
+        String search = "is";
+        String sub = "was";
+        String result = "";
+        String form = org.substring(16);
+        System.out.println(form); // This is, too.
+        String form2 = org.substring(0, 6);
+        System.out.println(form2); // This i
+        int i;
+        do { // заменить is на was
+            System.out.println(org);
+            i = org.indexOf(search); // номер символа с которого начинается is в строке org
+            if (i != -1) { // i = 2
+                result = org.substring(0, i); // Th
+                result = result + sub; // Thwas
+                result = result + org.substring(i + search.length()); // Thwas is a test. This is, too.
+                org = result; // Thwas is a test. This is, too.
             }
         } while (i != -1);
 
@@ -35,6 +56,7 @@ Class Example 1
             double height;
             double depth;
         }
+
         class BoxDemo {
             public static void main(String[] args) {
                 Box mybox = new Box();
@@ -52,11 +74,12 @@ Class Example 2
             double height;
             double depth;
         }
+
         class BoxDemo {
             public static void main(String[] args) {
-                Box mybox2 = new Box();
                 Box mybox1; // объявить ссылку на объект
                 mybox1 = new Box(); // выделить память для объекта Box
+                Box mybox2 = new Box();
                 double vol;
                 mybox1.width = 10;
                 mybox1.height = 20;
@@ -160,10 +183,10 @@ Class Example 7
             }
 
             //установить размеры параллелепипеда
-            void setDim(double w, double h, double d) {
-                width = w;
-                height = h;
-                depth = d;
+            void setDim(double width, double height, double depth) {
+                this.width = width;
+                this.height = height;
+                this.depth = depth;
             }
         }
 
@@ -172,13 +195,13 @@ Class Example 7
                 Box mybox1 = new Box();
                 Box mybox2 = new Box();
                 double vol;
-        //инициализировать каждый экземпляр класса Box
+                //инициализировать каждый экземпляр класса Box
                 mybox1.setDim(10, 20, 15);
                 mybox2.setDim(3, 6, 9);
-        //получить объем первого параллелепипеда
+                //получить объем первого параллелепипеда
                 vol = mybox1.volume();
                 System.out.println("Объем равен: " + vol);
-        //получить объем второго параллелепипеда
+                //получить объем второго параллелепипеда
                 vol = mybox2.volume();
                 System.out.println("Объем равен: " + vol);
             }
@@ -396,14 +419,14 @@ Class Example 14
                 this.b = b;
             }
 
-            Test(Test t) {
-                a = t.a;
-                b = t.b;
+            Test(Test object) {
+                a = object.a;
+                b = object.b;
             }
 
             //возвратить логическое значение true, если в качестве параметра o указан вызывающий объект
-            boolean equals(Test o) {
-                if (o.a == a && o.b == b) return true;
+            boolean equals(Test object) {
+                if (object.a == a && object.b == b) return true;
                 else return false;
             }
         }
@@ -419,6 +442,31 @@ Class Example 14
         }
 
 Class Example 15
+        //Возврат объекта
+        class Test {
+            int a;
+
+            Test(int a) {
+                this.a = a;
+            }
+
+            Test incrByTen() {
+                Test object = new Test(a + 10);
+                return object;
+            }
+        }
+
+        class RetOb {
+            public static void main(String[] args) {
+                Test ob = new Test(2);
+                Test ob2;
+                ob2 = ob.incrByTen();
+                System.out.println("ob.a: " + ob.a);
+                System.out.println("ob2.a: " + ob2.a);
+                ob2 = ob2.incrByTen();
+                System.out.println("ob2.a после второго увелечения значения: " + ob2.a);
+            }
+        }
 
 Class Example 16
         class Test {
@@ -442,7 +490,7 @@ Class Example 16
                 Test ob = new Test();
                 ob.a = 10;
                 ob.b = 20;
-        // ob.c = 10; ОШИБКА
+                // ob.c = 10; ОШИБКА
                 ob.setC(100);
                 System.out.println("a, b and c: " + ob.a + " " + ob.b + " " + ob.getC());
             }
