@@ -55,12 +55,32 @@ public class UniversityGroup {
 
 class UniversityGroupDemo {
     public static void main(String[] args) {
+        int result;
+        String s;
         ArrayList<String> students = new ArrayList<>();
+        UniversityGroup group1 = new UniversityGroup("КІТ 106.8", 2018);
+        UniversityGroup group2 = new UniversityGroup("КН-Н 1022в", 2022, students);
+
+        group1.addStudent("Student1");
+        group1.addStudent("Student2");
+        group1.addStudent("Student3");
+
         students.add("Prishchepa");
         students.add("Bieloysov");
         students.add("Chernysh");
-        UniversityGroup group1 = new UniversityGroup("КІТ 106.8", 2018);
-        UniversityGroup group2 = new UniversityGroup("КН-Н 1022в", 2022, students);
+
+        group1.removeStudent("Student2");
+        group2.removeStudent("Chernysh");
+
+        group1.getGroupDescription();
+        System.out.println();
         group2.getGroupDescription();
+
+        System.out.println();
+        result = group1.getStartYear();
+        System.out.println("Год поступления: " + result);
+        s = group2.getGroupName();
+        System.out.println("Группа: " + s);
+        System.out.println(group1.getStudentList());
     }
 }
